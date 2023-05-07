@@ -1,0 +1,45 @@
+﻿<Window x:Class="KatalogMuzyczny.AlbumDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KatalogMuzyczny"
+        mc:Ignorable="d"
+        Title="AlbumDetails" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowState="Maximized">
+
+    <Window.Resources>
+        <Style x:Key="HeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Row="0" Text="Lista tracków" FontSize="40" FontWeight="Bold" FontFamily="Algerian" Background="LightGray" VerticalAlignment="Center" TextAlignment="Center"/>
+
+        <DataGrid x:Name="AlbumDetailsGrid" Grid.Row="1" AutoGenerateColumns="False" Background="LightBlue" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Artysta" FontSize="20" Binding="{Binding Artysta}" Width="*" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Tytuł" FontSize="20" Binding="{Binding Tytul}" Width="*" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Rok wydania" FontSize="20" Binding="{Binding RokWydania}" Width="*" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Czas trwania" FontSize="20" Binding="{Binding CzasTrwania}" Width="*" HeaderStyle="{StaticResource HeaderStyle}"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="188,31,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

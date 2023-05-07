@@ -1,0 +1,77 @@
+﻿<Window x:Class="KatalogMuzyczny.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KatalogMuzyczny"
+        mc:Ignorable="d"
+        Title="Katalog Muzyczny" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowState="Maximized">
+
+    <Window.Resources>
+        <Style x:Key="HeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Left" Grid.Column="0" Text="Katalog albumów"  FontSize="40" FontWeight="Bold" FontFamily="Algerian" VerticalAlignment="Center" Margin="15,0,0,0"/>
+            <Button DockPanel.Dock="Right" Grid.Column="0" HorizontalAlignment="Right" Width="120" Content="Wyloguj" FontSize="25" FontFamily="Bahnschrift Condensed" Click="Button_Click" Margin="5" VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <DataGrid x:Name="AlbumsDataGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="FullRow" Background="LightBlue" IsReadOnly="True">
+
+        <DataGrid.Columns>
+                <DataGridTextColumn Header="Wykonawca" Binding="{Binding Artist.Name}" Width="*" FontSize="20" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Tytuł" Binding="{Binding Title}" Width="*" FontSize="20" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Wersja" Binding="{Binding Version}" Width="*" FontSize="20" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Rok wydania" Binding="{Binding Year}" Width="*" FontSize="20" HeaderStyle="{StaticResource HeaderStyle}"/>
+                <DataGridTextColumn Header="Dostawca" Binding="{Binding Supplier.Name}" Width="*" FontSize="20" HeaderStyle="{StaticResource HeaderStyle}"/>
+        </DataGrid.Columns>
+        
+        </DataGrid>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" Background="LightGray" Height="Auto" VerticalAlignment="Center" >
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Center" FontSize="25" VerticalAlignment="Bottom">
+                    Wpisz tekst do filtrowania
+                </TextBlock>
+                <TextBox x:Name="FilterTextBox" Grid.Column="1" Grid.Row="0" Margin="2" FontSize="25" VerticalAlignment="Bottom"/>
+
+                <GroupBox x:Name="FilterCategoryPanel" Margin="10" Grid.Column="0"  Grid.Row="1" FontSize="15">
+                    <GroupBox.Header>
+                        <Bold>Filtruj według:</Bold>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <RadioButton x:Name="NazwaArtystyRadioButton">Nazwa artysty</RadioButton>
+                        <RadioButton x:Name="TytulAlbumuRadioButton">Tytul albumu</RadioButton>
+                        <RadioButton x:Name="RokWydaniaAlbumuRadioButton">Rok wydania albumu</RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <Button x:Name="FilterButton" Grid.Column="1"  Grid.Row="1" FontSize="30" FontWeight="Bold" Click="FilterButton_Click">Filtruj</Button>
+                <Button x:Name="SelectedButton" Grid.Column="3"  Grid.RowSpan="2" FontSize="30" FontWeight="Bold" Click="SelectedButton_Click">Szczegóły</Button>
+            </Grid>
+            
+        </StackPanel>
+    </Grid>
+</Window>
